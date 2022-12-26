@@ -174,3 +174,16 @@ export const useCurrentDiscussionTopic = () => {
   }
   return null;
 };
+
+export function addScriptHeader() {
+  const script = document.createElement("script");
+  script.type = "application/json";
+  script.innerHTML = `gtag('config', 'G-XDGY5ZHRR0', {
+    'user_id': ${getAuthenticatedUser().userId} 
+    });`;
+  script.async = true;
+  document.head.appendChild(script);
+  return () => {
+    document.head.removeChild(script);
+  }
+};

@@ -15,7 +15,7 @@ import { CourseTabsNavigation } from '../../components/NavigationBar';
 import { ALL_ROUTES, DiscussionProvider, Routes } from '../../data/constants';
 import { DiscussionContext } from '../common/context';
 import {
-  useCourseDiscussionData, useIsOnDesktop, useRedirectToThread, useShowLearnersTab, useSidebarVisible,
+  useCourseDiscussionData, useIsOnDesktop, useRedirectToThread, useShowLearnersTab, useSidebarVisible, addScriptHeader
 } from '../data/hooks';
 import { selectDiscussionProvider } from '../data/selectors';
 import { EmptyLearners, EmptyPosts, EmptyTopics } from '../empty-posts';
@@ -70,6 +70,7 @@ export default function DiscussionsHome() {
     if (path && path !== 'undefined') {
       postMessageToParent('discussions.navigate', { path });
     }
+    addScriptHeader();
   }, [path]);
 
   return (
