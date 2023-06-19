@@ -1,8 +1,8 @@
 {
   "navigation.course.tabs.label": "Course Material",
   "learn.course.tabs.navigation.overflow.menu": "Nhiều hơn ...",
-  "discussions.comments.comment.addResponse": "Thêm phản hồi",
-  "discussions.comments.comment.addComment": "Thêm bình luận",
+  "discussions.comments.comment.addResponse": "Phản hồi chủ đề này",
+  "discussions.comments.comment.addComment": "Bình luận phản hồi này",
   "discussions.comments.comment.abuseFlaggedMessage": "Nội dung bị báo cáo để nhân viên xem xét",
   "discussions.actions.back.alt": "Trở lại danh sách",
   "discussions.comments.comment.responseCount": "{num, plural,\n      =0 {Không có phản hồi}\n      one {Đang hiển thị # phản hổi}\n      other {Đang hiển thị # phản hổi}\n    }",
