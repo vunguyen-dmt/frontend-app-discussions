@@ -9,6 +9,7 @@ import {
 import Footer from '@edx/frontend-component-footer';
 import { LearningHeader as Header } from '@edx/frontend-component-header';
 import { getConfig } from '@edx/frontend-platform';
+import { Helmet } from 'react-helmet';
 
 import { PostActionsBar } from '../../components';
 import { CourseTabsNavigation } from '../../components/NavigationBar';
@@ -85,6 +86,9 @@ export default function DiscussionsHome() {
     }}
     >
       {!inContext && <Header courseOrg={org} courseNumber={courseNumber} courseTitle={courseTitle} />}
+      <Helmet>
+        <link rel="shortcut icon" href={getConfig().FAVICON_URL} type="image/x-icon" />
+      </Helmet>
       <main className="container-fluid d-flex flex-column p-0 w-100" id="main" tabIndex="-1">
         {!inContext && <CourseTabsNavigation activeTab="discussion" courseId={courseId} />}
         <div
