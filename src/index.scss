@@ -337,7 +337,7 @@ header {
 .header-action-bar {
   background-color: #fff;
   z-index: 2;
-  box-shadow: 0px 2px 4px rgb(0 0 0 / 15%), 0px 2px 8px rgb(0 0 0 / 15%);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 15%), 0px 2px 8px rgba(0, 0, 0, 15%);
   position: sticky;
   top: 0;
 
@@ -517,4 +517,10 @@ header {
 .font-xl {
   font-size: 18px;
   line-height: 28px;
+}
+
+.header-action-bar {
+  .nav-link {
+    border-radius: 0!important;
+  }
 }
