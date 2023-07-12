@@ -24,11 +24,24 @@ const Reply = ({
   postType,
   intl,
 }) => {
+  console.log("reply replyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreply")
+  console.log(reply)
   timeago.register('time-locale', timeLocale);
   const dispatch = useDispatch();
   const [isEditing, setEditing] = useState(false);
   const [isDeleting, showDeleteConfirmation, hideDeleteConfirmation] = useToggle(false);
   const [isReporting, showReportConfirmation, hideReportConfirmation] = useToggle(false);
+
+  const postAvatarImageSrc = () => {
+    try {
+      if(reply.users && reply.author in reply.users && reply.users[reply.author].profile.image.hasImage && !reply.anonymous && !reply.anonymousToPeers) {
+        return reply.users[reply.author].profile.image.imageUrlSmall;
+      }
+    } catch {
+
+    }
+    return "";
+  }
 
   const handleAbusedFlag = useCallback(() => {
     if (reply.abuseFlagged) {
@@ -99,6 +112,7 @@ const Reply = ({
           <Avatar
             className={`ml-0.5 mt-0.5 border-0 ${colorClass ? `outline-${colorClass}` : 'outline-anonymous'}`}
             alt={reply.author}
+            src={postAvatarImageSrc()}
             style={{
               width: '32px',
               height: '32px',
