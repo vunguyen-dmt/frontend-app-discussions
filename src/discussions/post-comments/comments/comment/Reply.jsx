@@ -24,8 +24,6 @@ const Reply = ({
   postType,
   intl,
 }) => {
-  console.log("reply replyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreply")
-  console.log(reply)
   timeago.register('time-locale', timeLocale);
   const dispatch = useDispatch();
   const [isEditing, setEditing] = useState(false);

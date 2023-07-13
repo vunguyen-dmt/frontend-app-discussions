@@ -211,5 +211,6 @@
     "tour.body.notRespondedFilter": "Bây giờ bạn có thể lọc các cuộc thảo luận để tìm những bài đăng chưa được phản hồi.",
     "tour.title.notRespondedFilter": "Tiêu chí lọc mới",
     "tour.body.responseSortTour": "Phản hồi và bình luận bây giờ được sắp xếp theo thời gian đăng mới nhất. Vui lòng sử dụng lựa chọn này để thay đổi thứ tự sắp xếp",
-    "tour.title.responseSortTour": "Sắp xếp phản hồi!"
+    "tour.title.responseSortTour": "Sắp xếp phản hồi!",
+    "pageTitle": "Thảo luận"
   }
