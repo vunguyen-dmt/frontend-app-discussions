@@ -19,6 +19,7 @@ import timeLocale from './time-locale';
 const AuthorLabel = ({
   intl,
   author,
+  authorFullName,
   authorLabel,
   linkToProfile,
   labelColor,
@@ -48,7 +49,6 @@ const AuthorLabel = ({
 
   const showUserNameAsLink = useShowLearnersTab()
     && linkToProfile && author && author !== intl.formatMessage(messages.anonymous);
-
   const authorName = (
     <span
       className={classNames('mr-1.5 font-size-14 font-style font-weight-500', {
@@ -58,7 +58,7 @@ const AuthorLabel = ({
       role="heading"
       aria-level="2"
     >
-      {isRetiredUser ? '[Deactivated]' : author}
+      {isRetiredUser ? '[Deactivated]' : authorFullName ? `${authorFullName} (${author})` : author}
     </span>
   );
   const labelContents = (
@@ -132,6 +132,7 @@ const AuthorLabel = ({
 AuthorLabel.propTypes = {
   intl: intlShape.isRequired,
   author: PropTypes.string.isRequired,
+  authorFullName: PropTypes.string.isRequired,
   authorLabel: PropTypes.string,
   linkToProfile: PropTypes.bool,
   labelColor: PropTypes.string,

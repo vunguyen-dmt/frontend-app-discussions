@@ -14,6 +14,7 @@ import {
 } from '../../../common';
 import timeLocale from '../../../common/time-locale';
 import { useAlertBannerVisible } from '../../../data/hooks';
+import { getAuthorImageLink } from '../../../utils';
 import { editComment, removeComment } from '../../data/thunks';
 import messages from '../../messages';
 import CommentEditor from './CommentEditor';
@@ -24,24 +25,11 @@ const Reply = ({
   postType,
   intl,
 }) => {
-  console.log("reply replyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreplyreply")
-  console.log(reply)
   timeago.register('time-locale', timeLocale);
   const dispatch = useDispatch();
   const [isEditing, setEditing] = useState(false);
   const [isDeleting, showDeleteConfirmation, hideDeleteConfirmation] = useToggle(false);
   const [isReporting, showReportConfirmation, hideReportConfirmation] = useToggle(false);
-
-  const postAvatarImageSrc = () => {
-    try {
-      if(reply.users && reply.author in reply.users && reply.users[reply.author].profile.image.hasImage && !reply.anonymous && !reply.anonymousToPeers) {
-        return reply.users[reply.author].profile.image.imageUrlSmall;
-      }
-    } catch {
-
-    }
-    return "";
-  }
 
   const handleAbusedFlag = useCallback(() => {
     if (reply.abuseFlagged) {
@@ -112,7 +100,7 @@ const Reply = ({
           <Avatar
             className={`ml-0.5 mt-0.5 border-0 ${colorClass ? `outline-${colorClass}` : 'outline-anonymous'}`}
             alt={reply.author}
-            src={postAvatarImageSrc()}
+            src={getAuthorImageLink(reply)}
             style={{
               width: '32px',
               height: '32px',
@@ -125,6 +113,7 @@ const Reply = ({
         >
           <div className="d-flex flex-row justify-content-between" style={{ height: '24px' }}>
             <AuthorLabel
+              authorFullName={reply.authorName}
               author={reply.author}
               authorLabel={reply.authorLabel}
               labelColor={colorClass && `text-${colorClass}`}
