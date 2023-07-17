@@ -73,6 +73,7 @@ const DiscussionsHome = () => {
     <>
       <Helmet>
         <title>{formatMessage(messages.pageTitle)}</title>
+        <link rel="shortcut icon" href={getConfig().FAVICON_URL} type="image/x-icon" />
       </Helmet>
       <DiscussionContext.Provider value={{
         page,

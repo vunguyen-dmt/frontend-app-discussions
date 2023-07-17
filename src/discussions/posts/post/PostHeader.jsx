@@ -10,6 +10,7 @@ import { Issue, Question } from '../../../components/icons';
 import { AvatarOutlineAndLabelColors, ThreadType } from '../../../data/constants';
 import { AuthorLabel } from '../../common';
 import { useAlertBannerVisible } from '../../data/hooks';
+import { getAuthorImageLink } from '../../utils';
 import messages from './messages';
 import { postShape } from './proptypes';
 
@@ -17,17 +18,6 @@ export const PostAvatar = ({
   post, authorLabel, fromPostLink, read,
 }) => {
   const outlineColor = AvatarOutlineAndLabelColors[authorLabel];
-  const postAvatarImageSrc = () => {
-    try {
-      if (post.users && post.author in post.users && post.users[post.author].profile.image.hasImage && !post.anonymous && !post.anonymousToPeers) {
-        return post.users[post.author].profile.image.imageUrlSmall;
-      }
-    } catch {
-
-    }
-
-    return '';
-  };
 
   const avatarSize = useMemo(() => {
     let size = '2rem';
@@ -66,7 +56,7 @@ export const PostAvatar = ({
           'mt-3 ml-2': post.type === ThreadType.QUESTION && fromPostLink,
           'avarat-img-position mt-17px': post.type === ThreadType.QUESTION,
         })}
-        src={postAvatarImageSrc()}
+        src={getAuthorImageLink(post)}
         style={{
           height: avatarSize,
           width: avatarSize,
@@ -128,6 +118,7 @@ const PostHeader = ({
               </h5>
             )}
           <AuthorLabel
+            authorFullName={post.authorName}
             author={post.author || intl.formatMessage(messages.anonymous)}
             authorLabel={post.authorLabel}
             labelColor={authorLabelColor && `text-${authorLabelColor}`}

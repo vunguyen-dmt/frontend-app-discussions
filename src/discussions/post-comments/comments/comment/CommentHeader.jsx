@@ -8,6 +8,7 @@ import { Avatar } from '@edx/paragon';
 import { AvatarOutlineAndLabelColors } from '../../../../data/constants';
 import { AuthorLabel } from '../../../common';
 import { useAlertBannerVisible } from '../../../data/hooks';
+import { getAuthorImageLink } from '../../../utils';
 import { commentShape } from './proptypes';
 
 const CommentHeader = ({
@@ -15,17 +16,6 @@ const CommentHeader = ({
 }) => {
   const colorClass = AvatarOutlineAndLabelColors[comment.authorLabel];
   const hasAnyAlert = useAlertBannerVisible(comment);
-  const postAvatarImageSrc = () => {
-    try {
-      if (comment.users && comment.author in comment.users && comment.users[comment.author].profile.image.hasImage && !comment.anonymous && !comment.anonymousToPeers) {
-        return comment.users[comment.author].profile.image.imageUrlSmall;
-      }
-    } catch {
-
-    }
-
-    return '';
-  };
   return (
     <div className={classNames('d-flex flex-row justify-content-between', {
       'mt-2': hasAnyAlert,
@@ -35,7 +25,7 @@ const CommentHeader = ({
         <Avatar
           className={`border-0 ml-0.5 mr-2.5 ${colorClass ? `outline-${colorClass}` : 'outline-anonymous'}`}
           alt={comment.author}
-          src={postAvatarImageSrc()}
+          src={getAuthorImageLink(comment)}
           style={{
             width: '32px',
             height: '32px',
@@ -43,6 +33,7 @@ const CommentHeader = ({
         />
         <AuthorLabel
           author={comment.author}
+          authorFullName={comment.authorName}
           authorLabel={comment.authorLabel}
           labelColor={colorClass && `text-${colorClass}`}
           linkToProfile

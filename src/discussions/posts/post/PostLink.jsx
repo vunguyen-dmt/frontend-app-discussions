@@ -119,6 +119,7 @@ const PostLink = ({
             </div>
           </div>
           <AuthorLabel
+            authorFullName={post.author ? post.authorName : intl.formatMessage(messages.anonymous)}
             author={post.author || intl.formatMessage(messages.anonymous)}
             authorLabel={post.authorLabel}
             labelColor={authorLabelColor && `text-${authorLabelColor}`}
