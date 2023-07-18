@@ -45,7 +45,7 @@ const AuthorLabel = ({
 
   const isRetiredUser = author ? author.startsWith('retired__user') : false;
   const showTextPrimary = !authorLabelMessage && !isRetiredUser && !alert;
-  const className = classNames('d-flex align-items-center', { 'mb-0.5': !postOrComment }, labelColor);
+  const className = classNames('d-flex', { 'mb-0.5': !postOrComment }, labelColor);
 
   const showUserNameAsLink = useShowLearnersTab()
     && linkToProfile && author && author !== intl.formatMessage(messages.anonymous);
@@ -71,7 +71,7 @@ const AuthorLabel = ({
         )}
         trigger={['hover', 'focus']}
       >
-        <div className={classNames('d-flex flex-row align-items-center', {
+        <div className={classNames('d-flex flex-row', {
           'disable-div': !authorToolTip,
         })}
         >
@@ -89,7 +89,7 @@ const AuthorLabel = ({
                 'text-primary-500': showTextPrimary,
                 'text-gray-700': isRetiredUser,
               })}
-              style={{ marginLeft: '2px' }}
+              style={{ marginLeft: '2px', whiteSpace: 'nowrap' }}
             >
               {authorLabelMessage}
             </span>
