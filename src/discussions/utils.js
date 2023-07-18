@@ -299,7 +299,7 @@ export function isLastElementOfList(list, element) {
 
 export const getAuthorImageLink = (data) => {
   try {
-    if (data.users && data.author in data.users && !data.anonymous && !data.anonymousToPeers) {
+    if (data.users && data.author && !data.anonymous && !data.anonymousToPeers) {
       const authorTempObject = {};
       authorTempObject[data.author] = '';
       const authorKey = Object.keys(camelCaseObject(authorTempObject))[0];
