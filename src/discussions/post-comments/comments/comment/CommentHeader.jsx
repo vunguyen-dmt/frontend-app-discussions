@@ -8,6 +8,7 @@ import { Avatar } from '@edx/paragon';
 import { AvatarOutlineAndLabelColors } from '../../../../data/constants';
 import { AuthorLabel } from '../../../common';
 import { useAlertBannerVisible } from '../../../data/hooks';
+import { getAuthorImageLink } from '../../../utils';
 import { commentShape } from './proptypes';
 
 const CommentHeader = ({
@@ -15,7 +16,6 @@ const CommentHeader = ({
 }) => {
   const colorClass = AvatarOutlineAndLabelColors[comment.authorLabel];
   const hasAnyAlert = useAlertBannerVisible(comment);
-
   return (
     <div className={classNames('d-flex flex-row justify-content-between', {
       'mt-2': hasAnyAlert,
@@ -25,6 +25,7 @@ const CommentHeader = ({
         <Avatar
           className={`border-0 ml-0.5 mr-2.5 ${colorClass ? `outline-${colorClass}` : 'outline-anonymous'}`}
           alt={comment.author}
+          src={getAuthorImageLink(comment)}
           style={{
             width: '32px',
             height: '32px',
@@ -32,6 +33,7 @@ const CommentHeader = ({
         />
         <AuthorLabel
           author={comment.author}
+          authorFullName={comment.authorName}
           authorLabel={comment.authorLabel}
           labelColor={colorClass && `text-${colorClass}`}
           linkToProfile

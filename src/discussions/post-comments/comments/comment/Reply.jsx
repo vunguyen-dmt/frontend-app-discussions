@@ -14,6 +14,7 @@ import {
 } from '../../../common';
 import timeLocale from '../../../common/time-locale';
 import { useAlertBannerVisible } from '../../../data/hooks';
+import { getAuthorImageLink } from '../../../utils';
 import { editComment, removeComment } from '../../data/thunks';
 import messages from '../../messages';
 import CommentEditor from './CommentEditor';
@@ -99,6 +100,7 @@ const Reply = ({
           <Avatar
             className={`ml-0.5 mt-0.5 border-0 ${colorClass ? `outline-${colorClass}` : 'outline-anonymous'}`}
             alt={reply.author}
+            src={getAuthorImageLink(reply)}
             style={{
               width: '32px',
               height: '32px',
@@ -111,6 +113,7 @@ const Reply = ({
         >
           <div className="d-flex flex-row justify-content-between" style={{ height: '24px' }}>
             <AuthorLabel
+              authorFullName={reply.authorName}
               author={reply.author}
               authorLabel={reply.authorLabel}
               labelColor={colorClass && `text-${colorClass}`}

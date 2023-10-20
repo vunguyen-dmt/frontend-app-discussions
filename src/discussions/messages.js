@@ -188,6 +188,11 @@ const messages = defineMessages({
     defaultMessage: 'Ok',
     description: 'Modal dismiss button text',
   },
+  pageTitle: {
+    id: 'pageTitle',
+    defaultMessage: 'Discussions',
+    description: 'Discussions',
+  },
 });
 
 export default messages;
