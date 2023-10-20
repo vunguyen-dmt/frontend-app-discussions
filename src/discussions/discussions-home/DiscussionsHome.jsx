@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
-import { Helmet } from 'react-helmet';
 import { useSelector } from 'react-redux';
 import {
   Route, Switch, useLocation, useRouteMatch,
@@ -9,8 +8,6 @@ import {
 
 import Footer from '@edx/frontend-component-footer';
 import { LearningHeader as Header } from '@edx/frontend-component-header';
-import { getConfig } from '@edx/frontend-platform';
-import { useIntl } from '@edx/frontend-platform/i18n';
 
 import { PostActionsBar } from '../../components';
 import { CourseTabsNavigation } from '../../components/NavigationBar';
@@ -32,10 +29,8 @@ import BlackoutInformationBanner from './BlackoutInformationBanner';
 import DiscussionContent from './DiscussionContent';
 import DiscussionSidebar from './DiscussionSidebar';
 import useFeedbackWrapper from './FeedbackWrapper';
-import InformationBanner from './InformationBanner';
 
 const DiscussionsHome = () => {
-  const { formatMessage } = useIntl();
   const location = useLocation();
   const postActionBarRef = useRef(null);
   const postEditorVisible = useSelector(selectPostEditorVisible);
@@ -49,7 +44,6 @@ const DiscussionsHome = () => {
   const isOnDesktop = useIsOnDesktop();
   let displaySidebar = useSidebarVisible();
   const enableInContextSidebar = Boolean(new URLSearchParams(location.search).get('inContextSidebar') !== null);
-  const isFeedbackBannerVisible = getConfig().DISPLAY_FEEDBACK_BANNER === 'true';
   const {
     courseId, postId, topicId, category, learnerUsername,
   } = params;
@@ -70,52 +64,47 @@ const DiscussionsHome = () => {
   }, [path]);
 
   return (
-    <>
-      <Helmet>
-        <title>{formatMessage(messages.pageTitle)}</title>
-        <link rel="shortcut icon" href={getConfig().FAVICON_URL} type="image/x-icon" />
-      </Helmet>
-      <DiscussionContext.Provider value={{
-        page,
-        courseId,
-        postId,
-        topicId,
-        enableInContextSidebar,
-        category,
-        learnerUsername,
-      }}
-      >
-        {!enableInContextSidebar && <Header courseOrg={org} courseNumber={courseNumber} courseTitle={courseTitle} />}
-        <main className="container-fluid d-flex flex-column p-0 w-100" id="main" tabIndex="-1">
-          {!enableInContextSidebar && <CourseTabsNavigation activeTab="discussion" courseId={courseId} />}
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <DiscussionContext.Provider value={{
+      page,
+      courseId,
+      postId,
+      topicId,
+      enableInContextSidebar,
+      category,
+      learnerUsername,
+    }}
+    >
+      {!enableInContextSidebar && <Header courseOrg={org} courseNumber={courseNumber} courseTitle={courseTitle} />}
+      <main className="container-fluid d-flex flex-column p-0 w-100" id="main" tabIndex="-1">
+        {!enableInContextSidebar && <CourseTabsNavigation activeTab="discussion" courseId={courseId} />}
+        <div
+          className={classNames('header-action-bar', {
+            'shadow-none border-light-300 border-bottom': enableInContextSidebar,
+          })}
+          ref={postActionBarRef}
+        >
           <div
-            className={classNames('header-action-bar', {
-              'shadow-none border-light-300 border-bottom': enableInContextSidebar,
+            className={classNames('d-flex flex-row justify-content-between navbar fixed-top', {
+              'pl-4 pr-3 py-0': enableInContextSidebar,
             })}
-            ref={postActionBarRef}
           >
-            <div
-              className={classNames('d-flex flex-row justify-content-between navbar fixed-top', {
-                'pl-4 pr-3 py-0': enableInContextSidebar,
-              })}
-            >
-              {!enableInContextSidebar && <Route path={Routes.DISCUSSIONS.PATH} component={NavigationBar} />}
-              <PostActionsBar />
-            </div>
-            {isFeedbackBannerVisible && <InformationBanner />}
-            <BlackoutInformationBanner />
+            {!enableInContextSidebar && <Route path={Routes.DISCUSSIONS.PATH} component={NavigationBar} />}
+            <PostActionsBar />
           </div>
-          {provider === DiscussionProvider.LEGACY && (
+          <BlackoutInformationBanner />
+        </div>
+        {provider === DiscussionProvider.LEGACY && (
           <Route
             path={[Routes.POSTS.PATH, Routes.TOPICS.CATEGORY]}
             component={LegacyBreadcrumbMenu}
           />
-          )}
+        )}
 
-          <div className="d-flex flex-row">
-            <DiscussionSidebar displaySidebar={displaySidebar} postActionBarRef={postActionBarRef} />
-            {displayContentArea && <DiscussionContent />}
-            {!displayContentArea && (
+        <div className="d-flex flex-row">
+          <DiscussionSidebar displaySidebar={displaySidebar} postActionBarRef={postActionBarRef} />
+          {displayContentArea && <DiscussionContent />}
+          {!displayContentArea && (
             <Switch>
               <Route
                 path={Routes.TOPICS.PATH}
@@ -131,14 +120,12 @@ const DiscussionsHome = () => {
               />
               {isRedirectToLearners && <Route path={Routes.LEARNERS.PATH} component={EmptyLearners} />}
             </Switch>
-            )}
-          </div>
-          {!enableInContextSidebar && <DiscussionsProductTour />}
-        </main>
-        {!enableInContextSidebar && <Footer />}
-      </DiscussionContext.Provider>
-    </>
-
+          )}
+        </div>
+        {!enableInContextSidebar && <DiscussionsProductTour />}
+      </main>
+      {!enableInContextSidebar && <Footer />}
+    </DiscussionContext.Provider>
   );
 };
 
