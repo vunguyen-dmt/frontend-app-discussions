@@ -1,7 +1,7 @@
-@import "@edx/brand/paragon/fonts.scss";
-@import "@edx/brand/paragon/variables.scss";
-@import "@edx/paragon/scss/core/core.scss";
-@import "@edx/brand/paragon/overrides.scss";
+@import "~@edx/brand/paragon/fonts.scss";
+@import "~@edx/brand/paragon/variables.scss";
+@import "~@edx/paragon/scss/core/core.scss";
+@import "~@edx/brand/paragon/overrides.scss";
 
 @import "~@edx/frontend-component-footer/dist/footer";
 @import "~@edx/frontend-component-header/dist/index";
@@ -63,10 +63,6 @@ $fa-font-path: "~font-awesome/fonts";
 
 .font-style-normal {
   font-style: normal;
-}
-
-.font-family-inter {
-  font-family: "Inter";
 }
 
 .post-footer-icon-dimentions {
@@ -277,7 +273,6 @@ header {
 
 header {
   line-height: 28px;
-  font-family: Inter, Helvetica Neue, Arial, sans-serif;
   font-size: 18px;
   height: 60px;
 
@@ -314,10 +309,8 @@ header {
 
 #courseTabsNavigation {
   font-size: 18px;
-  font-family: Inter, Helvetica Neue, Arial, sans-serif;
 
   .container-xl {
-    padding-left: 31px;
     font-size: 1.125rem;
 
     .nav {
@@ -477,7 +470,6 @@ header {
 }
 
 .font-style {
-  font-family: "Inter";
   font-style: normal;
 }
 
