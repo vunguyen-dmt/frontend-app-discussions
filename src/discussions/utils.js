@@ -3,7 +3,7 @@ import { getIn } from 'formik';
 import { uniqBy } from 'lodash';
 import { generatePath, useRouteMatch } from 'react-router';
 
-import { getConfig } from '@edx/frontend-platform';
+import { camelCaseObject, getConfig } from '@edx/frontend-platform';
 import {
   CheckCircle, CheckCircleOutline, Delete, Edit, Lock, LockOpen, Pin, Report, Verified, VerifiedOutline,
 } from '@edx/paragon/icons';
@@ -296,3 +296,18 @@ export function handleKeyDown(event) {
 export function isLastElementOfList(list, element) {
   return list[list.length - 1] === element;
 }
+
+export const getAuthorImageLink = (data) => {
+  try {
+    if (data.users && data.author && !data.anonymous && !data.anonymousToPeers) {
+      const authorTempObject = {};
+      authorTempObject[data.author] = '';
+      const authorKey = Object.keys(camelCaseObject(authorTempObject))[0];
+      if (data.users[authorKey] && data.users[authorKey].profile.image.hasImage) {
+        return data.users[authorKey].profile.image.imageUrlSmall;
+      }
+    }
+  } catch {}
+
+  return '';
+};
