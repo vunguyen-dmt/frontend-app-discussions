@@ -18,6 +18,7 @@ import timeLocale from './time-locale';
 
 const AuthorLabel = ({
   author,
+  authorName,
   authorLabel,
   linkToProfile,
   labelColor,
@@ -44,12 +45,12 @@ const AuthorLabel = ({
 
   const isRetiredUser = author ? author.startsWith('retired__user') : false;
   const showTextPrimary = !authorLabelMessage && !isRetiredUser && !alert;
-  const className = classNames('d-flex align-items-center', { 'mb-0.5': !postOrComment }, labelColor);
+  const className = classNames('d-flex flex-wrap align-items-center', { 'mb-0.5': !postOrComment }, labelColor);
 
   const showUserNameAsLink = useShowLearnersTab()
     && linkToProfile && author && author !== intl.formatMessage(messages.anonymous);
 
-  const authorName = useMemo(() => (
+  const authorFullName = useMemo(() => (
     <span
       className={classNames('mr-1.5 font-size-14 font-style font-weight-500', {
         'text-gray-700': isRetiredUser,
@@ -58,7 +59,7 @@ const AuthorLabel = ({
       role="heading"
       aria-level="2"
     >
-      {isRetiredUser ? '[Deactivated]' : author}
+      {isRetiredUser ? '[Deactivated]' : authorName ? `${authorName} (${author})` : author}
     </span>
   ), [author, authorLabelMessage, isRetiredUser]);
 
@@ -90,7 +91,7 @@ const AuthorLabel = ({
                 'text-primary-500': showTextPrimary,
                 'text-gray-700': isRetiredUser,
               })}
-              style={{ marginLeft: '2px' }}
+              style={{ marginLeft: '2px', whiteSpace: 'nowrap' }}
             >
               {authorLabelMessage}
             </span>
@@ -104,7 +105,7 @@ const AuthorLabel = ({
             'text-white': alert,
             'text-gray-500': !alert,
           })}
-          style={{ lineHeight: '20px', fontSize: '12px', marginBottom: '-2.3px' }}
+          style={{ lineHeight: '22px', fontSize: '12px', height: '22px', marginTop: '2px'}}
         >
           {timeago.format(postCreatedAt, 'time-locale')}
         </span>
@@ -122,16 +123,17 @@ const AuthorLabel = ({
           className="text-decoration-none"
           style={{ width: 'fit-content' }}
         >
-          {!alert && authorName}
+          {!alert && authorFullName}
         </Link>
         {labelContents}
       </div>
     )
-    : <div className={className}>{authorName}{labelContents}</div>;
+    : <div className={className}>{authorFullName}{labelContents}</div>;
 };
 
 AuthorLabel.propTypes = {
   author: PropTypes.string.isRequired,
+  authorName: PropTypes.string.isRequired,
   authorLabel: PropTypes.string,
   linkToProfile: PropTypes.bool,
   labelColor: PropTypes.string,

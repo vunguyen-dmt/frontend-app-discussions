@@ -23,7 +23,7 @@ import CommentEditor from './CommentEditor';
 const Reply = ({ responseId }) => {
   timeago.register('time-locale', timeLocale);
   const {
-    id, abuseFlagged, author, authorLabel, endorsed, lastEdit, closed, closedBy,
+    id, abuseFlagged, author, authorName, authorLabel, endorsed, lastEdit, closed, closedBy,
     closeReason, createdAt, threadId, parentId, rawBody, renderedBody, editByLabel, closedByLabel,
   } = useSelector(selectCommentOrResponseById(responseId));
   const intl = useIntl();
@@ -131,9 +131,10 @@ const Reply = ({ responseId }) => {
           className="bg-light-300 pl-4 pt-2.5 pr-2.5 pb-10px flex-fill"
           style={{ borderRadius: '0rem 0.375rem 0.375rem' }}
         >
-          <div className="d-flex flex-row justify-content-between" style={{ height: '24px' }}>
+          <div className="d-flex flex-row justify-content-between">
             <AuthorLabel
               author={author}
+              authorName={authorName}
               authorLabel={authorLabel}
               labelColor={colorClass && `text-${colorClass}`}
               linkToProfile

@@ -35,7 +35,7 @@ const PostSummaryFooter = ({
   const userHasModerationPrivileges = useSelector(selectUserHasModerationPrivileges);
 
   return (
-    <div className="d-flex align-items-center text-gray-700" style={{ height: '24px' }}>
+    <div className="d-flex align-items-center text-gray-700">
       <div className="d-flex align-items-center mr-4.5">
         <OverlayTrigger
           overlay={(
