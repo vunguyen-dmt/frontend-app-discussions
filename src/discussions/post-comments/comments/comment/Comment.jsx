@@ -42,9 +42,11 @@ const Comment = ({
   const comment = useSelector(selectCommentOrResponseById(commentId));
   const {
     id, parentId, childCount, abuseFlagged, endorsed, threadId, endorsedAt, endorsedBy, endorsedByLabel, renderedBody,
-    voted, following, voteCount, authorLabel, author, authorName, createdAt, lastEdit, rawBody, closed, closedBy, closeReason,
-    editByLabel, closedByLabel,
+    voted, following, voteCount, author, authorLabel, authorName, createdAt, lastEdit, rawBody, closed, closedBy,
+    closeReason, editByLabel, closedByLabel,
   } = comment;
+
+  console.log(renderedBody + " "+ authorName)
   const intl = useIntl();
   const hasChildren = childCount > 0;
   const isNested = Boolean(parentId);

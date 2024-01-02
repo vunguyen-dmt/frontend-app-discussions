@@ -9,6 +9,7 @@ export const commentShape = PropTypes.shape({
   endorsedAt: PropTypes.string,
   endorsed: PropTypes.bool,
   author: PropTypes.string,
+  authorName: PropTypes.string,
   authorLabel: PropTypes.string,
   users: PropTypes.objectOf(PropTypes.shape({
     profile: PropTypes.shape({

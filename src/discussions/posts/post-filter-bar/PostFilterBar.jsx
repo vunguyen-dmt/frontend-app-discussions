@@ -37,7 +37,7 @@ export const ActionItem = React.memo(({
 }) => (
   <label
     htmlFor={id}
-    className="focus border-bottom-0 d-flex align-items-center w-100 py-2 m-0 font-weight-500 filter-menu"
+    className="focus border-bottom-0 d-flex w-100 py-2 m-0 font-weight-500 filter-menu"
     data-testid={value === selected ? 'selected' : null}
     style={{ cursor: 'pointer' }}
     aria-checked={value === selected}
@@ -48,7 +48,7 @@ export const ActionItem = React.memo(({
     <Form.Radio id={id} className="sr-only sr-only-focusable" value={value} tabIndex="0">
       {label}
     </Form.Radio>
-    <span aria-hidden className="text-truncate">
+    <span>
       {label}
     </span>
   </label>
