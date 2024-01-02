@@ -39,10 +39,10 @@ const CommentHeader = ({
             width: '32px',
             height: '32px',
           }}
-        />
+        />{}
         <AuthorLabel
           author={author}
-          authorFullName={authorName}
+          authorName={authorName}
           authorLabel={authorLabel}
           labelColor={colorClass && `text-${colorClass}`}
           linkToProfile
@@ -57,6 +57,7 @@ const CommentHeader = ({
 CommentHeader.propTypes = {
   author: PropTypes.string.isRequired,
   authorLabel: PropTypes.string,
+  authorName: PropTypes.string,
   abuseFlagged: PropTypes.bool.isRequired,
   closed: PropTypes.bool,
   createdAt: PropTypes.string.isRequired,
@@ -68,6 +69,7 @@ CommentHeader.propTypes = {
 
 CommentHeader.defaultProps = {
   authorLabel: null,
+  authorName: null,
   closed: undefined,
   lastEdit: null,
 };
