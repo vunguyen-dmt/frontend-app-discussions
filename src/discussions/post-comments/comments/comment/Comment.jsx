@@ -46,7 +46,6 @@ const Comment = ({
     closeReason, editByLabel, closedByLabel,
   } = comment;
 
-  console.log(renderedBody + " "+ authorName)
   const intl = useIntl();
   const hasChildren = childCount > 0;
   const isNested = Boolean(parentId);
