@@ -50,7 +50,7 @@ const AuthorLabel = ({
   const className = classNames('d-flex flex-wrap align-items-center', { 'mb-0.5': !postOrComment }, labelColor);
 
   const showUserNameAsLink = useShowLearnersTab()
-    && linkToProfile && author && author !== intl.formatMessage(messages.anonymous) && isInSidebarContext;
+    && linkToProfile && author && author !== intl.formatMessage(messages.anonymous) && !isInSidebarContext;
 
   const authorFullName = useMemo(() => (
     <span
