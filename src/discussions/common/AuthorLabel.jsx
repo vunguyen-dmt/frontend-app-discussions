@@ -33,6 +33,8 @@ const AuthorLabel = ({
   let icon = null;
   let authorLabelMessage = null;
 
+  const isInSidebarContext = window.location.search === '?inContextSidebar';
+
   if (authorLabel === 'Staff') {
     icon = Institution;
     authorLabelMessage = intl.formatMessage(messages.authorLabelStaff);
@@ -48,7 +50,7 @@ const AuthorLabel = ({
   const className = classNames('d-flex flex-wrap align-items-center', { 'mb-0.5': !postOrComment }, labelColor);
 
   const showUserNameAsLink = useShowLearnersTab()
-    && linkToProfile && author && author !== intl.formatMessage(messages.anonymous);
+    && linkToProfile && author && author !== intl.formatMessage(messages.anonymous) && isInSidebarContext;
 
   const authorFullName = useMemo(() => (
     <span
@@ -105,7 +107,9 @@ const AuthorLabel = ({
             'text-white': alert,
             'text-gray-500': !alert,
           })}
-          style={{ lineHeight: '22px', fontSize: '12px', height: '22px', marginTop: '2px'}}
+          style={{
+            lineHeight: '22px', fontSize: '12px', height: '22px', marginTop: '2px',
+          }}
         >
           {timeago.format(postCreatedAt, 'time-locale')}
         </span>
