@@ -142,7 +142,7 @@ const TinyMCEEditor = (props) => {
                       + ' | link blockquote openedx_code image'
                       + ' | bullist numlist outdent indent'
                       + ' | removeformat'
-                      + ' | openedx_html'
+                      // + ' | openedx_html'
                       + ' | emoticons'
                       + ' | charmap',
           content_css: false,
