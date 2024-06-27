@@ -16,6 +16,7 @@ import timeLocale from './time-locale';
 
 const AuthorLabel = ({
   author,
+  authorName,
   authorLabel,
   linkToProfile,
   labelColor,
@@ -36,7 +37,7 @@ const AuthorLabel = ({
   const showUserNameAsLink = linkToProfile && author && author !== intl.formatMessage(messages.anonymous)
                              && !enableInContextSidebar;
 
-  const authorName = useMemo(() => (
+  const authorFullName = useMemo(() => (
     <span
       className={classNames('mr-1.5 font-size-14 font-style font-weight-500 author-name', {
         'text-gray-700': isRetiredUser,
@@ -45,7 +46,7 @@ const AuthorLabel = ({
       role="heading"
       aria-level="2"
     >
-      {isRetiredUser ? '[Deactivated]' : author}
+      {isRetiredUser ? '[Deactivated]' : authorName ? `${authorName} (${author})` : author}
     </span>
   ), [author, authorLabelMessage, isRetiredUser]);
 
@@ -107,12 +108,12 @@ const AuthorLabel = ({
           className="text-decoration-none text-reset"
           style={{ width: 'fit-content' }}
         >
-          {!alert && authorName}
+          {!alert && authorFullName}
         </Link>
         {labelContents}
       </div>
     )
-    : <div className={`${className} flex-wrap`}>{authorName}{labelContents}</div>;
+    : <div className={`${className} flex-wrap`}>{authorFullName}{labelContents}</div>;
 };
 
 AuthorLabel.propTypes = {
