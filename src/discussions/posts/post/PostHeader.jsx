@@ -82,6 +82,7 @@ PostAvatar.defaultProps = {
 const PostHeader = ({
   abuseFlagged,
   author,
+  authorFullname,
   authorLabel,
   closed,
   createdAt,
@@ -126,6 +127,7 @@ const PostHeader = ({
           )}
           <AuthorLabel
             author={author || intl.formatMessage(messages.anonymous)}
+            authorFullname={authorFullname}
             authorLabel={authorLabel}
             labelColor={authorLabelColor && `text-${authorLabelColor}`}
             linkToProfile
@@ -144,6 +146,7 @@ PostHeader.propTypes = {
   postType: PropTypes.string.isRequired,
   authorLabel: PropTypes.string,
   author: PropTypes.string.isRequired,
+  authorFullname: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   abuseFlagged: PropTypes.bool,

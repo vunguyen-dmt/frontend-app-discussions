@@ -42,8 +42,8 @@ const Comment = ({
   const comment = useSelector(selectCommentOrResponseById(commentId));
   const {
     id, parentId, childCount, abuseFlagged, endorsed, threadId, endorsedAt, endorsedBy, endorsedByLabel, renderedBody,
-    voted, following, voteCount, authorLabel, author, createdAt, lastEdit, rawBody, closed, closedBy, closeReason,
-    editByLabel, closedByLabel,
+    voted, following, voteCount, authorLabel, author, authorFullname, createdAt, lastEdit, rawBody, closed, closedBy, 
+    closeReason, editByLabel, closedByLabel,
   } = comment;
   const intl = useIntl();
   const hasChildren = childCount > 0;
@@ -198,6 +198,7 @@ const Comment = ({
           />
           <CommentHeader
             author={author}
+            authorFullname={authorFullname}
             authorLabel={authorLabel}
             abuseFlagged={abuseFlagged}
             closed={closed}
