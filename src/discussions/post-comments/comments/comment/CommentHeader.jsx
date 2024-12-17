@@ -10,6 +10,7 @@ import { useAlertBannerVisible } from '../../../data/hooks';
 
 const CommentHeader = ({
   author,
+  authorFullname,
   authorLabel,
   abuseFlagged,
   closed,
@@ -40,6 +41,7 @@ const CommentHeader = ({
         />
         <AuthorLabel
           author={author}
+          authorFullname={authorFullname}
           authorLabel={authorLabel}
           labelColor={colorClass && `text-${colorClass}`}
           linkToProfile
@@ -53,6 +55,7 @@ const CommentHeader = ({
 
 CommentHeader.propTypes = {
   author: PropTypes.string.isRequired,
+  authorFullname: PropTypes.string.isRequired,
   authorLabel: PropTypes.string,
   abuseFlagged: PropTypes.bool.isRequired,
   closed: PropTypes.bool,

@@ -31,8 +31,8 @@ const Post = ({ handleAddResponseButton }) => {
   const { enableInContextSidebar, postId } = useContext(DiscussionContext);
   const {
     topicId, abuseFlagged, closed, pinned, voted, hasEndorsed, following, closedBy, voteCount, groupId, groupName,
-    closeReason, authorLabel, type: postType, author, title, createdAt, renderedBody, lastEdit, editByLabel,
-    closedByLabel,
+    closeReason, authorLabel, type: postType, author, authorFullname, title, createdAt, renderedBody, lastEdit,
+    editByLabel, closedByLabel,
   } = useSelector(selectThread(postId));
   const intl = useIntl();
   const location = useLocation();
@@ -175,6 +175,7 @@ const Post = ({ handleAddResponseButton }) => {
       <PostHeader
         abuseFlagged={abuseFlagged}
         author={author}
+        authorFullname={authorFullname}
         authorLabel={authorLabel}
         closed={closed}
         createdAt={createdAt}
